@@ -1,87 +1,39 @@
-var synth = window.speechSynthesis;
+const clock = () => {
+  // 現在の日時・時刻の情報を取得
+  const d = new Date();
 
-var inputForm = document.querySelector('form');
-var inputTxt = document.querySelector('.txt');
-var voiceSelect = document.querySelector('select');
+  // 年を取得
+  let year = d.getFullYear();
+  // 月を取得
+  let month = d.getMonth() + 1;
+  // 日を取得
+  let date = d.getDate();
+  // 曜日を取得
+  let dayNum = d.getDay();
+  const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  let day = weekday[dayNum];
+  // 時を取得
+  let hour = d.getHours();
+  // 分を取得
+  let min = d.getMinutes();
+  // 秒を取得
+  let sec = d.getSeconds();
 
-var pitch = document.querySelector('#pitch');
-var pitchValue = document.querySelector('.pitch-value');
-var rate = document.querySelector('#rate');
-var rateValue = document.querySelector('.rate-value');
+  // 1桁の場合は0を足して2桁に
+  month = month < 10 ? "0" + month : month;
+  date = date < 10 ? "0" + date : date;
+  hour = hour < 10 ? "0" + hour : hour;
+  min = min < 10 ? "0" + min : min;
+  sec = sec < 10 ? "0" + sec : sec;
 
-var voices = [];
+  // 日付・時刻の文字列を作成
+  let today = `${year}.${month}.${date} ${day}`;
+  let time = `${hour}:${min}:${sec}`;
 
-function populateVoiceList() {
-  voices = synth.getVoices().sort(function (a, b) {
-      const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
-      if ( aname < bname ) return -1;
-      else if ( aname == bname ) return 0;
-      else return +1;
-  });
-  var selectedIndex = voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
-  voiceSelect.innerHTML = '';
-  for(i = 0; i < voices.length ; i++) {
-    var option = document.createElement('option');
-    option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
-    
-    if(voices[i].default) {
-      option.textContent += ' -- DEFAULT';
-    }
+  // 文字列を出力
+  document.querySelector(".clock-date").innerText = today;
+  document.querySelector(".clock-time").innerText = time;
+};
 
-    option.setAttribute('data-lang', voices[i].lang);
-    option.setAttribute('data-name', voices[i].name);
-    voiceSelect.appendChild(option);
-  }
-  voiceSelect.selectedIndex = selectedIndex;
-}
-
-populateVoiceList();
-if (speechSynthesis.onvoiceschanged !== undefined) {
-  speechSynthesis.onvoiceschanged = populateVoiceList;
-}
-
-function speak(){
-    if (synth.speaking) {
-        console.error('speechSynthesis.speaking');
-        return;
-    }
-    if (inputTxt.value !== '') {
-    var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
-    utterThis.onend = function (event) {
-        console.log('SpeechSynthesisUtterance.onend');
-    }
-    utterThis.onerror = function (event) {
-        console.error('SpeechSynthesisUtterance.onerror');
-    }
-    var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
-    for(i = 0; i < voices.length ; i++) {
-      if(voices[i].name === selectedOption) {
-        utterThis.voice = voices[i];
-        break;
-      }
-    }
-    utterThis.pitch = pitch.value;
-    utterThis.rate = rate.value;
-    synth.speak(utterThis);
-  }
-}
-
-inputForm.onsubmit = function(event) {
-  event.preventDefault();
-
-  speak();
-
-  inputTxt.blur();
-}
-
-pitch.onchange = function() {
-  pitchValue.textContent = pitch.value;
-}
-
-rate.onchange = function() {
-  rateValue.textContent = rate.value;
-}
-
-voiceSelect.onchange = function(){
-  speak();
-}
+// 1秒ごとにclock関数を呼び出す
+setInterval(clock, 1000);
