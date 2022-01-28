@@ -38,28 +38,3 @@ const clock = () => {
 // 1秒ごとにclock関数を呼び出す
 setInterval(clock, 1000);
 
-
-const randomize = document.querySelector('.randomize');
-const story = document.querySelector('.story');
-
-function randomValueFromArray(array){
-  const random = Math.floor(Math.random()*array.length);
-  return array[random];
-  
-const storyText = ':insertx: :inserty:今日は';
-const insertX = ['ヤッホー！', 'お疲れ様です。', 'こんにちは！'];
-const insertY = ['元気〜？', '時間気になりますか？', 'いい天気ですね！'];
-
-randomize.addEventListener('click', result);
-
-function result() {
-  let newStory = storyText;
-
-  const xItem = randomValueFromArray(insertX);
-  const yItem = randomValueFromArray(insertY);
-  
-  newStory = newStory.replace(':insertx:',xItem);
-  newStory = newStory.replace(':inserty:',yItem);
-  
- story.textContent = newStory;
- story.style.visibility = 'visible'
