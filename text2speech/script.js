@@ -10,7 +10,7 @@ const clock = () => {
   let date = d.getDate();
   // 曜日を取得
   let dayNum = d.getDay();
-  const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  const weekday = ["日", "月", "火", "水", "木", "金", "土"];
   let day = weekday[dayNum];
   // 時を取得
   let hour = d.getHours();
@@ -27,7 +27,7 @@ const clock = () => {
   sec = sec < 10 ? "0" + sec : sec;
 
   // 日付・時刻の文字列を作成
-  let today = `${year}.${month}.${date} ${day}`;
+  let today = `${year}年${month}月${date}日（${day}）`;
   let time = `${hour}:${min}:${sec}`;
 
   // 文字列を出力
