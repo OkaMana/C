@@ -5,7 +5,7 @@ const clock = () => {
 　let year = d.toLocaleString( "ja-JP-u-ca-japanese" ,{ era : "long" });
 
   // 日付・時刻の文字列を作成
-  let today = `今日は${year}だよ〜`;
+  let today = `今日は ${year} だよ〜`;
 
   // 文字列を出力
   document.querySelector(".clock-date").innerText = today;
