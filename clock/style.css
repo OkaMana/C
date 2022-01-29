@@ -20,22 +20,16 @@
   line-height: 1.2;
   text-align: center;
 }
-/* 日付のスタイル */
-.clock-date {
-  font-size: 25px;
-}
 
 /* 時間のスタイル */
-.clock-time {
+.clock-data {
   font-size: 100px;
 }
 
 /* 文字サイズ調整 */
 @media screen and (max-width: 500px) {
-  .clock-date {
-    font-size: 5vw;
-  }
-  .clock-time {
+
+  .clock-data {
     font-size: 20vw;
   }
 }
