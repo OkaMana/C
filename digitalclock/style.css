@@ -1,5 +1,5 @@
 /* Google Fonts 読み込み */
-@import url("https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap");
 
 /* 全体を囲うコンテナー */
 .container {
@@ -14,7 +14,7 @@
 
 /* 時計の共通スタイル */
 .clock {
-  font-family: 'Kosugi Maru', monospace;
+  font-family: 'Mochiy Pop P One', monospace;
   color: #daf6ff;
   text-shadow: 0 0 20px #0aafe6;
   line-height: 1.2;
@@ -25,17 +25,11 @@
   font-size: 25px;
 }
 
-/* 時間のスタイル */
-.clock-time {
-  font-size: 100px;
-}
 
 /* 文字サイズ調整 */
 @media screen and (max-width: 500px) {
   .clock-date {
     font-size: 5vw;
   }
-  .clock-time {
-    font-size: 20vw;
-  }
+  
 }
